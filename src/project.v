@@ -241,5 +241,5 @@ module tt_um_morse_top #(
         else if (valid)  seg_reg <= err ? 7'h48 : seg_dec;
     end
 
-    assign hex = SEG_ACTIVE_LOW ? ~seg_reg : seg_reg;
+assign hex = SEG_ACTIVE_LOW ? ~seg_reg : seg_reg;
 endmodule
