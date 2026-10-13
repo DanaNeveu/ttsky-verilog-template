@@ -1,6 +1,8 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# Decodificador Morse a 7 Segmentos (Tiny Tapeout)
+
+Proyecto desarrollado para el taller CANELOS 2026. Este diseño implementa un decodificador de código Morse utilizando un único botón pulsador físico para ingresar puntos y rayas, mostrando el carácter alfanumérico resultante en un display de 7 segmentos.
 
 - [Read the documentation for project](docs/info.md)
 
@@ -10,10 +12,18 @@ Tiny Tapeout is an educational project that aims to make it easier and cheaper t
 
 To learn more and get started, visit https://tinytapeout.com.
 
+## How it works
+
+El sistema consta de cuatro módulos principales en Verilog ubicados en la carpeta `src`:
+1. **`debounce`**: Filtra el ruido mecánico y los rebotes del botón físico.
+2. **`morse_fsm`**: Máquina de estados que mide la duración de cada pulsación (distinguiendo puntos `< 250ms` de guiones `>= 250ms`) y detecta pausas de silencio (`> 700ms`) para cerrar y decodificar el carácter.
+3. **`morse_to_7seg`**: Traductor combinacional que convierte los símbolos ingresados en patrones para un display de 7 segmentos (soportando letras A-Z, dígitos 0-9 y mostrando `=` en caso de error).
+4. **`tt_um_morse_top`**: Módulo principal que unifica todo y gestiona las entradas/salidas físicas del chip estándar de Tiny Tapeout.
+
 ## Set up your Verilog project
 
 1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
+2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties.
 3. Edit [docs/info.md](docs/info.md) and add a description of your project.
 4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
 
