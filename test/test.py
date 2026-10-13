@@ -1,6 +1,10 @@
+import os
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
+
+# Forzar la generación del archivo results.xml que GitHub Actions busca obligatoriamente
+os.environ["COCOTB_RESULTS_FILE"] = "results.xml"
 
 @cocotb.test()
 async def test_morse(dut):
