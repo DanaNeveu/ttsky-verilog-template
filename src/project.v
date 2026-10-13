@@ -201,6 +201,10 @@ endmodule
 // 4) Top
 //----------------------------------------------------------------------------
 module tt_um_morse_top #(
+
+    // Evitar advertencias del linter por señal no usada
+    wire _unused = &{ena, uio_in, 1'b0};
+    
     parameter CLK_HZ         = 50_000_000,
     parameter DB_MS          = 20,
     parameter DOT_MAX_MS     = 250,
