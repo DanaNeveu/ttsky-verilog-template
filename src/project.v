@@ -249,7 +249,8 @@ module tt_um_morse_top #(
         else if (valid)  seg_reg <= err ? 7'h48 : seg_dec;
     end
 
-    assign uo_out[7] = 1'b0;
+    assign uo_out[6:0] = SEG_ACTIVE_LOW ? ~seg_reg : seg_reg;
+    assign uo_out[7]   = 1'b0;
 
     assign uio_out = 8'b00000000;
     assign uio_oe  = 8'b00000000;
