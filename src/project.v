@@ -208,12 +208,14 @@ module tt_um_morse_top #(
     parameter BTN_ACTIVE_LOW = 1,   // 1: botón da 0 al presionar
     parameter SEG_ACTIVE_LOW = 1    // 1: ánodo común (segmento enciende con 0)
 )(
-    input  wire       clk,
-    input  wire       rst_n,
-    input  wire       btn,
-    output wire [6:0] hex,          // {g,f,e,d,c,b,a}
-    output wire       led_dot,
-    output wire       led_dash
+    input  wire [7:0] ui_in,    // Entradas (aquí entra tu botón en ui_in[0])
+    output wire [7:0] uo_out,   // Salidas (aquí salen los segmentos del display)
+    input  wire [7:0] uio_in,   // Entradas bidireccionales
+    output wire [7:0] uio_out,  // Salidas bidireccionales
+    output wire [7:0] uio_oe,   // Habilitación bidireccional
+    input  wire       ena,      // <-- ¡Faltaba este puerto de habilitación!
+    input  wire       clk,      // Reloj del sistema
+    input  wire       rst_n     // Reset activo en bajo
 );
     wire btn_pressed_raw = BTN_ACTIVE_LOW ? ~btn : btn;
     wire btn_clean;
