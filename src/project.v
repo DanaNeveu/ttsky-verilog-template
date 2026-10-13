@@ -221,8 +221,11 @@ module tt_um_morse_top #(
 
         // Evitar advertencias del linter por señal no usada
    wire _unused = &{ena, clk, rst_n, uio_in, ui_in[7:1], 1'b0};
+
+    wire led_dot;
+    wire led_dash;
     
-    wire btn_pressed_raw = BTN_ACTIVE_LOW ? ~btn : btn;
+    wire btn_pressed_raw = BTN_ACTIVE_LOW ? ~ui_in[0] : ui_in[0];
     wire btn_clean;
 
     debounce #(.CLK_HZ(CLK_HZ), .DB_MS(DB_MS)) u_db (
