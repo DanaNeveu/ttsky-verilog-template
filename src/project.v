@@ -201,9 +201,6 @@ endmodule
 // 4) Top
 //----------------------------------------------------------------------------
 module tt_um_morse_top #(
-
-    // Evitar advertencias del linter por señal no usada
-   wire _unused = &{ena, uio_in, uio_out, uio_oe, ui_in[7:1], 1'b0};
     
     parameter CLK_HZ         = 50_000_000,
     parameter DB_MS          = 20,
@@ -221,6 +218,10 @@ module tt_um_morse_top #(
     input  wire       clk,      // Reloj del sistema
     input  wire       rst_n     // Reset activo en bajo
 );
+
+        // Evitar advertencias del linter por señal no usada
+   wire _unused = &{ena, uio_in, uio_out, uio_oe, ui_in[7:1], 1'b0};
+    
     wire btn_pressed_raw = BTN_ACTIVE_LOW ? ~btn : btn;
     wire btn_clean;
 
