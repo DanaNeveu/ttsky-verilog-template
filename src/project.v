@@ -220,7 +220,7 @@ module tt_um_morse_top #(
 );
 
         // Evitar advertencias del linter por señal no usada
-   wire _unused = &{ena, uio_in, uio_out, uio_oe, ui_in[7:1], 1'b0};
+   wire _unused = &{ena, clk, rst_n, uio_in, ui_in[7:1], 1'b0};
     
     wire btn_pressed_raw = BTN_ACTIVE_LOW ? ~btn : btn;
     wire btn_clean;
